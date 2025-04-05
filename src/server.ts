@@ -11,13 +11,13 @@ const app = express();
 
 
 
-app.use((req, res, next) => {
-    console.log(`Received ${req.method} request for ${req.url}`);
-    next();
-  });
-  app.get("/test", (req, res) => {
-    res.send("Test route works!");
-  });
+// app.use((req, res, next) => {
+//     console.log(`Received ${req.method} request for ${req.url}`);
+//     next();
+//   });
+//   app.get("/test", (req, res) => {
+//     res.send("Test route works!");
+//   });
 //MIddleware
 app.use(express.json());
 

@@ -23,7 +23,7 @@ export const scrapeJobs = async (req: Request, res: Response): Promise<void> => 
         link: string;
     }[] = [];
     $(".job_seen_beacon").each((index, element) => {
-        const titlr = $(element).find("h2 a").text().trim();
+        const title = $(element).find("h2 a").text().trim();
         const company = $(element).find(".companyName").text().trim();
         const link = "http:www.indeed.com" + $(element).find("h2 a").attr("href");
         if (title && company && link) {
