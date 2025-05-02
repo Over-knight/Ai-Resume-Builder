@@ -28,6 +28,42 @@ export const getResumes = async (req: Request, res: Response): Promise<void> => 
     }
 };
 
+export const updateResume= async (req: Request, res:Response ): Promise<void> => {
+    try{
+        const resumeId = req.params.id;
+        const updates = req.body;
+
+        const updated= await Resume.findByIdAndUpdate(
+            resumeId,
+            { $set: updates },
+            { new: true, runValidators: true }
+        );
+        if(!updated) {
+            res.status(404).json({message: "Resume not found"});
+            return;
+        }
+        res.status(200).json(updated);
+    } catch (error: any) {
+        console.error("Error updating resume:", error);
+        res.status(500).json({ message: "Error updating resumes", error: error.message });
+    }
+}
+
+export const deleteResume = async (req: Request, res: Response): Promise<void> => {
+    try{
+        const resumeId = req.params.id;
+        const deleted = await Resume.findByIdAndDelete(resumeId);
+
+        if(!deleted) {
+            res.status(404).json({ message: "Resume not found" });
+        }
+
+        res.status(200).json({ message:"Resume deleted successfully"});
+    } catch(error: any) {
+        console.error("Error deleting resume: ", error);
+        res.status(500).json({ message: "Error deleting resume", error: error.message});
+    }
+}
 export const extractJobKeywords: RequestHandler = (req: Request, res: Response) => {
     try {
         const { jobDescription } = req.body;
@@ -46,4 +82,5 @@ export const extractJobKeywords: RequestHandler = (req: Request, res: Response) 
         console.error("Error extracting job keywords:", error);
         res.status(500).json({ message: "Server error"});
     }
+    
 };
