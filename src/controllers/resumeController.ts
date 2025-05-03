@@ -1,7 +1,9 @@
 import { Request, Response } from "express";
 import Resume from "../models/resumeModel";
 import nlp from "compromise";
-import stopword from "stopword";
+import PDFDocument from "pdfkit";
+import { Document as DocxDocument, Packer, Paragraph, TextRun } from "docx";
+// import stopword from "stopword";
 import { RequestHandler } from "express";
 
 export const createResume = async (req: Request, res: Response) => {
@@ -21,9 +23,9 @@ export const getResumes = async (req: Request, res: Response): Promise<void> => 
             res.status(400).json({ message: "User ID is required" });
             return;
         }
-        const resumes = await Resume.find({ user: req.body.User});
-        res.json(resumes);
-    } catch (error) {
+        const resumes = await Resume.find({ user: userId });
+        res.status(200).json(resumes);
+    } catch (error: any) {
         res.status(500).json({ message: "Error fetching resumes"});
     }
 };
@@ -84,3 +86,15 @@ export const extractJobKeywords: RequestHandler = (req: Request, res: Response) 
     }
     
 };
+
+export const downloadResumePDF = async (req: Request, res: Response) => {
+    try {
+        const resume = await Resume.findById(req.params.id);
+        if(!resume) {
+            res.status(404).json({ message: "Resume not found" });
+            return;
+        }
+        res.setHeader("Content-Type", "application/pdf");
+        res.setHeader
+    }
+}

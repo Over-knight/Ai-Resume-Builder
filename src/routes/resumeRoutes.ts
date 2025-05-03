@@ -6,7 +6,7 @@ import { protect } from "../middlewares/authMiddleware";
 const router = express.Router();
 
 router.post("/", protect, createResume);
-router.get("/", getResumes);
+router.get("/", protect, getResumes);
 router.post("/", extractJobKeywords);
 router.get("/scrape-jobs", scrapeJobs);
 
