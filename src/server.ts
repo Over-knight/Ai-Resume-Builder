@@ -1,11 +1,16 @@
-import express from "express";
 import dotenv from "dotenv";
+dotenv.config();
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import { VertexAI } from "@google-cloud/vertexai";
+import bodyParser from "body-parser";
 import mongoose from "mongoose";
 // import connectDB from "./config/db";
 import resumeRoutes from "./routes/resumeRoutes";
 import authRoutes from "./routes/authRoutes";
+import express from "express";
+import { textModel } from "./lib/genaiClient";
 
-dotenv.config();
+
 
 const app = express();
 
@@ -54,3 +59,6 @@ if (!mongoUri) {
     console.error("❌ MongoDB Connection Error:", error);
   }
 })();
+// const genAI = new GoogleGenerativeAI(process.env.API_KEY!);
+// const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+// const result = await textModel.generateContent({ })

@@ -11,17 +11,24 @@
   "license": "ISC",
   "description": "An AI powered resume builder",
   "dependencies": {
+    "@google-cloud/vertexai": "^1.10.0",
+    "@google/genai": "^0.12.0",
+    "@google/generative-ai": "^0.24.1",
     "@types/express": "^5.0.1",
     "axios": "^1.8.4",
+    "body-parser": "^2.2.0",
     "cheerio": "^1.0.0",
     "compromise": "^14.14.4",
+    "docx": "^9.4.1",
     "express": "^4.21.2",
     "mongoose": "^8.13.1",
     "natural": "^8.0.1",
-    "puppeteer": "^24.4.0",
+    "pdfkit": "^0.17.1",
+    "puppeteer": "^24.8.0",
     "stopword": "^3.1.4"
   },
   "devDependencies": {
+    "@types/pdfkit": "^0.13.9",
     "nodemon": "^3.1.9"
   }
 }
