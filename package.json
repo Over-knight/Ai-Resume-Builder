@@ -19,13 +19,18 @@
     "body-parser": "^2.2.0",
     "cheerio": "^1.0.0",
     "compromise": "^14.14.4",
+    "cors": "^2.8.5",
     "docx": "^9.4.1",
     "express": "^4.21.2",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.1.0",
     "mongoose": "^8.13.1",
     "natural": "^8.0.1",
     "pdfkit": "^0.17.1",
     "puppeteer": "^24.8.0",
     "stopword": "^3.1.4",
+    "xss-clean": "^0.1.4",
     "zod": "^3.24.3"
   },
   "devDependencies": {

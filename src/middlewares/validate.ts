@@ -9,7 +9,8 @@ export const validateBody = (schema: AnyZodObject) =>
                 field: e.path.join("."),
                 message: e.message
             }));
-        return res.status(400).json({ errors });
+        res.status(400).json({ errors });
+        return;
         }
         req.body = result.data;
         next();
@@ -23,7 +24,8 @@ export const validateQuery = (schema: AnyZodObject) =>
                 field: e.path.join("."),
                 message: e.message
             }));
-        return res.status(400).json({ errors });
+        res.status(400).json({ errors });
+        return;
         }
         req.query = result.data;
         next();

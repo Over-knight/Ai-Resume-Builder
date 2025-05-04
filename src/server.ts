@@ -11,6 +11,10 @@ import express from "express";
 import { textModel } from "./lib/genaiClient";
 
 
+import helmet from "helmet";
+import cors from "cors";
+import rateLimit from "express-rate-limit";
+import mongoSanitize from "express-mongo-sanitize";
 
 const app = express();
 
@@ -24,7 +28,24 @@ const app = express();
 //     res.send("Test route works!");
 //   });
 //MIddleware
-app.use(express.json());
+app.use(express.json({ limit: "10kb"}));
+app.use(mongoSanitize());
+
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  message: "Too many auth attempts, please try again later.",
+});
+app.use("/api/auth", authLimiter);
+
+
+const aiLimiter = rateLimit({
+  windowMs: 5 * 60 * 1000,
+  max: 10,
+  message: "Too many AI requests - slow down a bit.",
+});
+app.use("/api/resumes/:id/cover-letter", aiLimiter);
+app.use("/api/resumes/:id/optimize", aiLimiter);
 
 //Routes
 app.use("/api/auth", authRoutes);
