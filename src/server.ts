@@ -92,6 +92,11 @@ io.on("connection", socket => {
     console.log(`🔌 Socket disconnected: ${socket.id}`);
   });
 });
+// serve a basic health-check or landing message
+app.get("/", (_req, res) => {
+  res.send("🚀 AI Resume Builder API is live!");
+});
+
 
 const PORT = process.env.PORT || 4000;
 // Ensure MongoDB URI exists
