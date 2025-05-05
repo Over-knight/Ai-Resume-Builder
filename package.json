@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node dist/server.js",
     "start:dev": "nodemon --watch src --exec ts-node src/server.ts",
+    "dev": "nodemon src/server.ts",
     "test": "cross-env NODE_ENV=test jest --runInBand",
     "healthcheck": "ts-node --project tsconfig.json scripts/healthcheck.ts"
   },
@@ -44,9 +45,11 @@
   "devDependencies": {
     "@types/jest": "^29.5.14",
     "@types/morgan": "^1.9.9",
+    "@types/node": "^22.15.3",
     "@types/pdfkit": "^0.13.9",
     "@types/socket.io": "^3.0.1",
     "@types/supertest": "^6.0.3",
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "typescript": "^5.8.3"
   }
 }
