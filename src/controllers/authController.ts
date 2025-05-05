@@ -92,7 +92,7 @@ export const updateProfile = async (req: Request, res: Response): Promise<void> 
 
         res.json(userToReturn);
     } catch (error: any) {
-        console.error("Error upating profile:", error);
+        console.error("Error updating profile:", error);
         res.status(500).json({ message: "Server error", error: error.message});
     }
 };
