@@ -1,9 +1,9 @@
 import { AnyZodObject, Schema, ZodError } from "zod";
 import { Request, Response, NextFunction } from "express";
 
-export const validateBody = (schema: AnyZodObject) => 
+export const validateBody = (Schema: AnyZodObject) => 
     (req: Request, res: Response, next: NextFunction) => {
-        const result = schema.safeParse(req.body);
+        const result = Schema.safeParse(req.body);
         if (!result.success) {
             const errors = result.error.errors.map(e => ({
                 field: e.path.join("."),
@@ -16,9 +16,9 @@ export const validateBody = (schema: AnyZodObject) =>
         next();
     };
 
-export const validateQuery = (schema: AnyZodObject) =>
+export const validateQuery = (Schema: AnyZodObject) =>
     (req: Request, res: Response, next: NextFunction) => {
-        const result = schema.safeParse(req.query);
+        const result = Schema.safeParse(req.query);
         if (!result.success) {
             const errors = result.error.errors.map(e => ({
                 field: e.path.join("."),
